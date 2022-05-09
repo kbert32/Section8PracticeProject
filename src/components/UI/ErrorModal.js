@@ -1,9 +1,11 @@
 import styles from './ErrorModal.module.css';
 import Button from './Button';
+import butstyle from './Button.module.css';         //added 5/5
 
 function ErrorModal(props) {
     function disCheck(e) {
-        if (e.target.classList.contains(styles.backdrop) || (e.target.classList.contains(styles.button))) {
+        console.log(e.target);
+        if (e.target.classList.contains(styles.backdrop) || (e.target.classList.contains(butstyle.button))) {
             props.dismiss();
         }
     };

@@ -8,7 +8,7 @@ function AddUser(props) {
     
     function submitHandler(e) {                                                 //validation checks for empty fields and negative values
         e.preventDefault();                                                     
-        if (!(enteredAge && enteredName)) {
+        if (!(enteredAge.trim() && enteredName.trim())) {
             props.error('Please enter a valid name and age (non-empty values)');
             return;
         }
@@ -26,6 +26,7 @@ function AddUser(props) {
         props.update(user);                                                     //update 'Users' array and reset the input fields
         setEnteredName('');
         setEnteredAge('');
+        document.querySelector('#uname').focus();
     };
 
     function nameChangeHandler(e) {                                             //updates 'enteredName' state
@@ -38,9 +39,9 @@ function AddUser(props) {
 
     return (                                                                    //displays input form
         <form className={styles.input} onSubmit={submitHandler}>                
-            <label className={styles.input.label}>Username</label><br />
+            <label htmlFor='uname' className={styles.input.label}>Username</label><br />
             <input className={`${styles.input.input} ${styles.input.focus}`} value={enteredName} type="text" id="uname" name="uname" onChange={nameChangeHandler} /><br />
-            <label className={styles.input.label}>Age (Years)</label><br />
+            <label htmlFor='age' className={styles.input.label}>Age (Years)</label><br />
             <input className={`${styles.input.input} ${styles.input.focus}`} value={enteredAge} type="text" id="age" name="age" onChange={ageChangeHandler} /><br />
             <Button label='Add User' />
         </form>
